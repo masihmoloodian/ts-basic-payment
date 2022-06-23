@@ -14,5 +14,5 @@ swagger runnung on /docs
 
 ## Role and Permission
 
-superadmin define by username at .env called SUPER_USER_USERNAME
+superadmin define by username at .env called SUPER_USER_USERNAME  
 permission decorator support multiple Role (each role can have multiple permissions) with AND/OR condition
