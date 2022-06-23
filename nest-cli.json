@@ -1,0 +1,12 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "webpack": false,
+    "assets": [
+      "**/*.xlsx",
+      "push-notification/mail/templates/**/*"
+    ],
+    "watchAssets": true
+  }
+}
