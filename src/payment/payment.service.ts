@@ -1,9 +1,7 @@
 import { Repository } from 'typeorm'
 
-
 import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-
 
 import { PaymentEntity } from './entities/payment.entity'
 import { PaymentResponseEnum } from './enum/payment-response.enum'
@@ -23,11 +21,12 @@ export class PaymentService {
             plan_id: planId,
             response: PaymentResponseEnum.SUCCESS,
             code,
+            url: `http://marchhealth.com/${code}`,
         })
     }
 
     private async generateRandomNumber(): Promise<number> {
-        return Number(Math.floor(100000 + Math.random() * 900000).toString())
+        return Number(Math.floor(1000 + Math.random() * 9000).toString())
     }
 
     getAll() {
