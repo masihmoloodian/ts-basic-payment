@@ -1,11 +1,10 @@
 import { JwtGuard } from 'src/auth/guard/jwt.guard'
 import { PermissionGuard } from 'src/auth/guard/permissions.guard'
 
-
 import { Controller, Get, UseGuards } from '@nestjs/common'
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger'
 
-
+import { Permissions } from '../../shared/decorators/permissions.decorator'
 import { PaymentService } from '../payment.service'
 
 @ApiTags('admin/payments')
@@ -16,6 +15,7 @@ export class PaymentAdminController {
     @ApiOperation({ summary: 'Get all payment' })
     @ApiBearerAuth()
     @UseGuards(JwtGuard, PermissionGuard)
+    @Permissions()
     @Get()
     getAll() {
         return this.paymentService.getAll()
