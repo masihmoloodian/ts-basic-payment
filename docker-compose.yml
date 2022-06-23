@@ -1,0 +1,40 @@
+
+version: '3.5'
+
+services:
+  march_health_api:
+    container_name: march_health_api
+    build: .
+    restart: always
+    depends_on:
+      - march_health_postgres
+      - march_health_redis
+    ports:
+      - "4200:4200"
+    networks:
+      - march_health_network
+
+  march_health_postgres:
+    container_name: march_health_postgres
+    image: postgres:12.2-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+    networks:
+      - march_health_network
+
+  march_health_redis:
+    container_name: march_health_redis
+    image: redis:6.0-rc2-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - march_health_network
+
+networks:
+  march_health_network:
